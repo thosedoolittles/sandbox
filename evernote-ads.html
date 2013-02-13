@@ -1,0 +1,68 @@
+<html>
+<head>
+
+<style>
+
+body {background-color:#CCCCCC;}
+
+ul.polaroids {width:97%; margin:0 0 5px -55px;}
+ul.polaroids li {display:inline;}
+ul.polaroids a {background:#fff; display:inline; float:left; margin:0 0 15px 16px; width:auto; padding:4px 4px 6px; text-align:center; font-family:"Marker Felt", sans-serif; text-decoration:none; color:#333; font-size:18px; -webkit-box-shadow:0 3px 6px rgba(0,0,0,.25); -moz-box-shadow:0 3px 6px rgba(0,0,0,.25); -webkit-transform:rotate(-1deg); -webkit-transition:-webkit-transform .15s linear; -moz-transform:rotate(-1deg);}
+ul.polaroids img {display:block; margin-bottom:8px;}
+ul.polaroids a:after {content:attr(title);}
+
+ul.polaroids li:nth-child(even) a {-webkit-transform:rotate(1deg);  -moz-transform:rotate(1deg);}
+ul.polaroids li:nth-child(3n) a {-webkit-transform:none; position:relative; top:-5px;  -moz-transform:none;}
+ul.polaroids li:nth-child(5n) a {-webkit-transform:rotate(2deg); position:relative; right:3px;  -moz-transform:rotate(2deg);}
+ul.polaroids li:nth-child(8n) a {position:relative; right:3px; top:8px;}
+ul.polaroids li:nth-child(11n) a {position:relative; left:-5px; top:3px;}
+
+ul.polaroids li.messy a {margin-top:-375px; margin-left:160px; -webkit-transform:rotate(-2deg); -moz-transform:rotate(-2deg);}
+
+ul.polaroids li a:hover {-webkit-transform:scale(2); -moz-transform:scale(2); -webkit-box-shadow:0 3px 6px rgba(0,0,0,.5); -moz-box-shadow:0 3px 6px rgba(0,0,0,.5); position:relative; z-index:5;}
+</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+<script type="text/javascript">
+
+function hideBrokenImageContainer(id) {
+  document.getElementById(id).innerHTML = "";
+
+}
+
+function promptAndWrite(elementID) {
+	var userID = prompt("Provide your Evernote UserID:","12329509");
+	var liIDs;
+	var htmlOutput = ("<ul class=\"polaroids\">");
+	for (var i=0;i<1000;i++) {
+		var liID = "li"+i;
+		htmlOutput = htmlOutput + "<li id=\""+liID+"\"><a href=\"https://www.evernote.com/prom/click?i="+i+"&u="+userID+"&a=evernote%20windows&v=268368\" title=\""+i+"\" target=\"_blank\"><img src=\"https://www.evernote.com/prom/img/" + i + "\" height=\"125\" width=\"125\" onerror=\"hideBrokenImageContainer('"+liID+"');\"></a></li>";
+	};
+	htmlOutput = htmlOutput + "</ul>";
+	document.getElementById(elementID).innerHTML = htmlOutput;
+	return false;
+}
+
+</script>
+
+</head>
+<body>
+<pre>
+http://www.amazon.com/gp/product/B002NU6FBI
+
+</pre>
+<ol>
+	<li>Locate your UserID (not your username). From the Windows client, you can find your UserID from the Evernote log files.</li>
+	<ul>
+		<li>Evernote Client &gt;&gt; Tools &gt;&gt; Options &gt;&gt; Evernote Log Files</li>
+		<li>e.g.:Windows 7 default location:C:\Users\&lt;username&gt;\AppData\Local\Evernote\Evernote</li>
+	</ul>
+	<li>Search the logs for "u=" (~8 digits) and copy the subsequent number to your clipboard to use in the JS alert.</li>
+	<li><a href="javascript:void(0);" onClick="promptAndWrite('outputDivID');">Click here to generate your code</a></li>
+</ol>
+
+<hr />
+
+<div id="outputDivID"></div>
+
+</body
+</html>
